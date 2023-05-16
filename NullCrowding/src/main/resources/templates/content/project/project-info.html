@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>메인 페이지</title>
+    <link rel="stylesheet" href="/css/project.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https:code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+<!-- 메인 헤더부분-->
+<header th:replace="fragments/header :: headerFragment"></header>
+<!-- 메인 바디시작-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="reward_title mb30 xs-mb15" th:text="${ pjDetail.projectDTO.getTitle() }"></div> <!---->
+        </div>
+        <div>
+            <div class="col-sm-8 xs-pl0 xs-pr0" style="margin: 0px -9px;">
+                <figure class="slick-slide slick-current slick-active" data-slick-index="0"
+                        aria-hidden="false"
+                        style="width: 670px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+                        tabindex="-1" role="option" aria-describedby="slick-slide00"><!---->
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item embed-responsive embed-responsive-16by9 active">
+                                <img th:src="${ pjDetail.getProjectDTO().getMainImg() }" class="img-responsive">
+                            </div>
+                            <div class="carousel-item ">
+                                <video src="/video/videoplayback.mp4" class="d-block w-100" alt="..." autoplay
+                                       controls></video>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </figure>
+            </div>
+            <div class="col-sm-4 mb30 xs-mt25 xs-mb20 pl45 pr15 xs-pl15 xs-pr15">
+                <div class="reward-info-box">
+                    <div class="reward-info-name">리워드</div>
+                    <div class="reward-info-amount" th:text="${ #numbers.formatInteger(pjDetail.getRaisedFund() , 3, 'COMMA') + '원' }">
+
+                        <!----> <span class="reward-info-status">펀딩 중</span> <!---->
+                    </div>
+                    <div class="mt20"><span class="reward-info-text">달성률</span>
+                        <span class="reward-info-now" th:text="${ pjDetail.getAchievePercent() } + '%'">
+                                &nbsp;</span> <span class="reward-info-goal"
+                                                    th:text="'목표금액 ' + ${ #numbers.formatInteger(pjDetail.projectDTO.getFundGoal() , 3, 'COMMA')}"></span>
+                    </div>
+                    <div class="mt5"><span class="reward-info-text">남은기간</span>
+                        <span class="reward-info-now mr5" th:text="${ pjDetail.remainDate }"></span>
+                        <span class="reward-info-goal" th:text="${ pjDetail.projectDTO.getEndDate() } + ' 종료'"></span>
+                    </div>
+                    <div class="mt5"><span class="reward-info-text">참여자</span>
+                        <span class="reward-info-now" th:text="${ pjDetail.projectDTO.getFunderNum() } + '명'"></span>
+                    </div>
+                    <div class="reward-info-share mt10 xs-mt15">
+                        <span class="reward-share-icon"></span>
+                        <span>프로젝트 공유하기</span>
+                    </div>
+                    <div class="detail_order_info mt25 xs-mt15 reward-order1-0"><a href="#">
+                        <div class="detail_order_info_head">
+                            <div class="mr8 m-auto">
+                                <div class="imgava"><!----></div>
+                            </div>
+                            <div class="ivs-info-profile">
+                                <div>
+                                    <div class="ivs-info-pjName" th:text="${ pjDetail.raiNickname }"></div>
+                                    <div class="ivs-info-pjlink">진행자에게 문의하기</div>
+                                </div>
+                                <div class="mt10"><span class="ivs-info-arrow arrow-left ml10"></span></div>
+                            </div>
+                        </div>
+                    </a></div>
+                    <div class="reward-info-desc mt15 xs-mt40 reward-order2-2">
+                        펀딩을 마치면 <span class="crowdy-font-bold">결제 예약 상태</span>입니다. 종료일에 100% 이상이 달성되었을 경우에만 결제예정일에
+                        결제가
+                        됩니다.
+                        <!---->
+                    </div>
+                </div>
+                <div id="profileModal" tabindex="-1" role="dialog" class="modal fade">
+                    <div role="document" class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-padding">
+                                <div class="reward_policy_title">진행자에게 문의하기</div>
+                                <div class="reward-policy-profilebox-1 mt5 xs-mt20">
+                                    <div class="reward-policy-profileImg"><!----></div>
+                                    <div>
+                                        <div class="reward-info-projectName">농업회사법인 주식회사 신선</div>
+                                        <div id="link-icon" data-clipboard-target="#copy-link"
+                                             class="reward-policy-email mb5">sinseon1449@gmail.com
+                                        </div>
+                                        <br>
+                                        <div id="copy-link">sinseon1449@gmail.com</div>
+                                        <a
+                                                href="http://www.sinseonju.com" target="_blank"
+                                                class="reward-policy-email">
+                                            <div class="website-icon reward-icon-setting"></div> <!----> <!---->
+                                            <!---->
+                                            <!---->
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer ">
+                                <div class="row not-space"><a data-dismiss="modal" class="modalBlueBtn">확인</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="list_category" style="border-top: 1px solid rgb(221, 221, 221);">
+    <div class="common_sub_top_menu common_stm_detail">
+        <div class="reward-menu"><a class="pointerCursor active"><span class="webcrowdy-font-bold">스토리</span></a> <a
+                class="pointerCursor"><span class="webcrowdy-font-bold">댓글 <em>2</em></span></a> <a
+                class="pointerCursor"><span class="webcrowdy-font-bold">안내</span></a></div>
+    </div>
+</div>
+<div class="mt40 xs-mt20 mb100">
+    <div class="container mce-content-body">
+        <div>
+            <blockquote class="blockquote_center">Null 펀딩 <strong>연말 한정 이벤트!</strong><br>펀딩 참여시 8개 추가 증정<br>10개 + 8개 =
+                <span class="txt_color">총 18개 구성</span>
+            </blockquote>
+            <h6><img th:src="${ pjDetail.projectDTO.getMainImg() }" alt="" width="796" height="537" class="al_center"></h6>
+            <h4 class="al_center" th:text="${ pjDetail.projectDTO.getDescription() }"></h4>
+            <br><br>
+            <blockquote class="blockquote_left">리워드 구성</blockquote>
+            <strong>
+                <th:block th:each=" reward : ${ pjDetail.projectDTO.getProjectRewardDTOList() }">
+                    <div th:text="${ reward.getName() }"></div>
+                    <div th:text="${ #numbers.formatInteger(reward.getPrice() , 3, 'COMMA') } + '원'"></div>
+                    <div th:text="'   :  ' + ${ reward.getDetails() }"}></div>
+                    <br><br>
+                </th:block>
+            </strong>
+        </div>
+        <strong>프로젝트 신고하기</strong>
+        <p class="report-description" style="word-break: keep-all;">
+            NULL 펀딩은 여러분의 제보를 바탕으로 진행자가 제공한 내용이 허위이거나 <br class="hidden-xs"> 지적재산권을 침해하는 경우 이를 적극 반영하고 있습니다.
+        </p> <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSehniTpe3cUgaS0XKpt-rYIOry4y8-MwHegspyqeY5Rf2MFGQ/viewform"
+            target="_blank" class="btn-detail btn-report">신고하기</a>
+    </div>
+    <hr class="crowdy-row-line mt40 mb40 xs-mt30 xs-mb30">
+</div>
+
+<!-- 메인 푸터 시작  -->
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+</body>
+
+</html>
+</body>
+
+</html>

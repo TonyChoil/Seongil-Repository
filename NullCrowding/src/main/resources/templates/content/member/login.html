@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>로그인 페이지</title>
+    <!-- Bootstrap core CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+</head>
+<body>
+                              <!-- 헤더 -->
+<header th:replace="fragments/header :: headerFragment"></header>
+                            <!-- 메인 바디 시작 -->
+<script>
+  if('[[${message}]]'){
+    alert('[[${message}]]')
+  }
+</script>
+
+
+<main class="form-signin text-center">
+  <form action="/member/login" method="post" id="loginForm">
+    <img class="mb-4 center" src="/img/loginLogo.png" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                            
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+        <label for="floatingPassword">Password</label>
+      </div>
+  </form>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+
+  <!-- Button trigger modal -->
+        <div style="float: right;">
+          <button type="button" class="btn btn-sm btn-Light text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Forgot password?
+          </button>
+              <svg width="10" height="15" viewBox="0 0 15 23" fill="none" style="padding-top: 5px;">
+              <path d="M0.950645 22.4145L13.8281 11.889L0.950647 1.36357" stroke="#9f9f9f" stroke-width="5">
+              </path>
+              </svg>
+          </div>    
+          <br>
+          <br>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
+
+      <script>
+        $(function(){
+          $("input[name=username]").focus();
+
+          $("button[type=submit]").click(function(){
+            $("#loginForm").submit();
+          });
+        })
+      </script>
+      <!-- Modal -->
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">비밀번호를 잊어버리셨나요?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>가입하신 이메일을 입력해 주세요.</p>
+              <br/>
+              <input type="text" name="email" id="email" size="43" placeholder="Email" class="full-width text">
+              <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Continue</button>  <!-- 임시 버튼 -->
+              <!-- <input type="submit" name="commit" value="Continue" class="" data-disable-with="Continue" disabled=""> -->
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">이메일 인증으로</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>이메일로 받은 인증번호를 입력하세요.</p>
+              <br/>
+              <input type="text" name="pwcode" id="pwcode" size="43" class="full-width text">
+              <button type="button" onclick="window.open('../find-pw/find-pw.html')" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Continue</button>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+                       <!-- 여기에 넘어갈모달 a태그 -->
+  </div>
+
+</main>
+                              
+	
+	<!-- 푸터 시작  -->
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+</body>
+</html>
