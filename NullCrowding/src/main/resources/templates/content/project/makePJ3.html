@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>메인 페이지</title>
+
+    <script src="https:code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="/js/cho.js"></script>
+</head>
+<body>
+<!-- 메인 헤더-->
+<header th:replace="fragments/header :: headerFragment"></header>
+<!-- 메인 바디 시작 -->
+
+<th:block th:replace="fragments/makePJheader :: makePJheader"></th:block>
+
+<div class="container">
+    <div class="row">
+        <div th:replace="fragments/mkPJSidebar :: mkPJSidebar"></div>
+        <div class="col-md-9">
+            <div class="text-group">
+                <br><br><br><br>
+                <div class="text-box1">
+                    <div class="text-box-header" style="font-size:30px;">
+                        <b>환불 및 교환 정책을 적어주세요.</b>
+                    </div>
+                    <div class="text-box-body">
+                        <span class="invisible-text">리워드 안내에 노출됩니다.</span>
+                        <br><br>
+                    </div>
+                </div>
+                <form action="/project/requestProject" id="PJform" method="post">
+                    <div class="text-box2">
+                        <div class="text-box-header">
+                            <b> 진행자의 환불 및 교환 정책</b>
+                            <br>
+                        </div>
+                        <div class="text-box-body">
+
+                            NULL펀딩 환불 및 교환 정책 외에 추가사항이 있으시면 적어주세요.<br>
+                            <textarea class="col-lg-5" name="refundRule" th:text="${ param.refundRule }"></textarea>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="text-box3">
+                        <div class="text-box-header">
+                            <b> 문의 가능한 번호</b><br>
+                            <input type="text" class="col-lg-5" placeholder="ex)010-1234-5678" name="tel"
+                                   th:value="${ #authentication.getPrincipal().fundRaiserDTO.getRaiPhone() }">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="text-box4">
+                        <div class="text-box-header">
+                            <b> 문의 가능한 이메일</b> <br>
+                            <input type="text" class="col-lg-5" placeholder="ex)abcde@naver.com" name="pjEmail"
+                                   th:value="${ #authentication.getPrincipal().fundRaiserDTO.getRaiEmail() }">
+                        </div>
+                    </div>
+                    <div style="display: none">
+                        <input name="title" th:value="${ param.title }">
+                        <input name="fundGoal" th:value="${ param.fundGoal }">
+                        <input name="description" th:value="${ param.description }">
+                        <input name="startDate" th:value="${ param.startDate }">
+                        <input name="endDate" th:value="${ param.endDate }">
+                        <input name="mainImg" th:value="${ param.mainImg }">
+                        <input name="videoURL" th:value="${ param.videoURL }">
+                    </div>
+                    <br>
+                    <div class="text-box5">
+                        <div class="text-box5-reward">
+                            <span class="grey-text-header"><strong>NULL 펀딩의 환불 및 교환 정책 기본사항</strong></span><br><br>
+                            <div class="grey-text">
+                                프로젝트 기간 중에는 자유롭게 마이 페이지에서 펀딩 취소가 가능합니다.<br>
+                                펀딩을 받아야만 생산을 시작할 수 있는 크라우드 펀딩 특성상, 프로젝트 종료 이후에는 <br>
+                                단순 변심으로 인한 교환이나 환불이 불가하니 이점 양해 부탁드립니다.<br>
+                                리워드 배송일이 예상보다 지연되는 경우, 새소식과 후원자 분들의 이메일을 통해 안내해드리겠습니다.<br>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <a href="javascript:void(0)">
+                        <button class="btn btn-block btn-secondary goPJ2">이전단계</button>
+                    </a>
+                    <button type="submit" class="btn btn-secondary">
+                        승인 요청하기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br><br><br>
+<!-- 메인 바디 끝 -->
+
+<!-- 메인 푸터 시작  -->
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+</body>
+</html>
