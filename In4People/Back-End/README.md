@@ -1,1 +1,1 @@
-# My separated code from the whole project's codes
+# 全体から私のコードだけを分離しておきました。
